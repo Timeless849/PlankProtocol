@@ -26,6 +26,9 @@ let events = [];
 app.use(cors());
 app.use(express.json({ limit: "10mb" })); // room for a base64-encoded JPEG snapshot
 app.use(express.static(path.join(__dirname, "public")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 function checkApiKey(req, res, next) {
   if (!API_KEY) return next();
